@@ -1,9 +1,20 @@
 # AI Server 範本
 
-## 簡介
+## 專案簡介
 這是一個 AI Server 的範本，刻意僅使用 CPU 運行 ollama。  
 Docker Compose 來管理多個服務，包括 FastAPI、Next.js、Nginx 和 PostgreSQL。  
 此範本適用於開發和持續集成（CI/CD）環境。
+
+## 技術棧介紹
+- **CI/CD**: Github Actions + 分支策略，實現持續集成和部署。
+- **Proxy Server**: Nginx 用作反向代理伺服器，負責處理 HTTP 請求並轉發到前後端服務。
+- **Back-End**: FastAPI + LangChain，建立 API 的 Python 框架，LangChain 建立 Agent 邏輯處理。
+- **Front-End**: Next.js(React) 建立前端網頁。
+- **AI Server**: Ollama (支援 CPU)，提供 AI 模型服務。
+- **DB**: PostSQL + PGLite(預計，現在還沒)，用於資料存儲。
+
+## 架構圖 - [線上架構圖](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=ai-sample-server.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1QD_Iwv_ZQpG5kS-wWtm0l2T6u9CXrsgk%26export%3Ddownload)
+![架構圖](./img/ai-sample-server.drawio.png)
 
 ## 前置條件
 以下是官方社群版本的 Ubuntu 安裝步驟，已經安裝過可忽略。  
@@ -28,22 +39,22 @@ sudo reboot
 ## 檔案結構
 ```bash
 AI-Server-Sample/
-├── docker-compose-cd.yml       # 開發/CI 用的 docker-compose 檔案
-├── docker-compose-ollama.yml   # OLLAMA 用的 docker-compose 檔案
-├── docker-compose.yml          # CD 用的 docker-compose 檔案
+├── docker-compose-ollama.yml   # CD 環境: Ollama 用的 docker-compose 檔案
+├── docker-compose-server.yml   # 伺服器用的 docker-compose 檔案
+├── docker-compose.yml          # 開發用的 docker-compose 檔案
 ├── dockerfile.fastapi          # FastAPI 的 Dockerfile
-├── dockerfile.next             # Next.js 的 Dockerfile
+├── dockerfile.nextjs           # Next.js 的 Dockerfile
 ├── dockerfile.nginx            # Nginx 的 Dockerfile
-├── dockerfile.pgsql            # PostgreSQL 的 Dockerfile
 ├── .env                        # 環境變數檔案 -> For Docker Compose
 ├── fastapi                     # FastAPI 應用程式的目錄
 ├── .github                     # GitHub Actions 的目錄
 │   └── workflows               # 工作流程的目錄
 │       ├── cd.yml              # CD 的工作流程
 │       └── ci.yml              # CI 的工作流程
-├── next                        # Next.js 應用程式的目錄
+├── img                         # 圖片目錄
+├── LICENSE                     # 專案許可證文件
+├── nextjs                      # Next.js 應用程式的目錄
 ├── nginx                       # Nginx 的目錄
-├── pgsql                       # PostgreSQL 的目錄
 └── README.md                   # 專案說明文件
 ```
 
@@ -59,11 +70,11 @@ AI-Server-Sample/
 - 密碼: ubuntu
 - 伺服器名稱: ubuntu-2204-ci
 - 安裝步驟:
-  1. 完整 CI 虛擬機
+  1. 建立虛擬機
     ![CI虛擬機](./img/vm-ci.png)
   2. 網路設定
     ![網路設定](./img/network-setting.png)
-  3. 啟動虛擬機並進行系統安裝，在安裝過程中設定網路
+  3. 啟動虛擬機並進行系統安裝，在安裝過程中設定網路，請照自己的路由器設定 IP 位址，不然就建立`僅限主機`的網路
     ![VM-網路設定](./img/ci-ipv4-config.png)
   4. 系統安裝完畢，重啟後，使用 SSH 登入
     ![SSH 登入](./img/ssh-login.png)
@@ -191,12 +202,14 @@ AI-Server-Sample/
     ![GitHub Runner 設定完成](./img/github-runner-complete.png)
 
 ### CD 環境
-因為有用 GitHub Actions Runner，所以可以直接使用 GitHub Actions 來部署  
-以下是手動部署的步驟：
+有用 GitHub Actions Runner  
+可直接使用 GitHub Actions 部署  
+也可以手動部屬，以下為步驟：
+1. 啟用 Ollama 服務
 ```bash
 docker compose -f docker-compose-ollama.yml up -d
 ```
-可選: Ollama 預先下載模型 - 使用量化感知訓練模型，降低記憶體需求
+2. (可選) 預先下載模型
 ```bash
 docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"
 ```
@@ -205,14 +218,5 @@ docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"
 可以考慮使用 [Kasm Workspace](https://www.kasmweb.com/)  
 本人也有提供 Kasm 的鏡像範本，除了官方的 ubuntu dind 鏡像功能之外  
 額外安裝 dbeaver, nvm, npm, node.js, Postman, Discord  
-- [Workspace 鏡像區](https://tsukisama9292.github.io/kasm_registry/)
-- [Docker Hub](https://hub.docker.com/r/tsukisama9292/ubuntu-jammy-dind)
-
-### 建立 uv.lock - 該儲存庫已經建立好了(可略過該步驟)
-需要在本來就有 UV 的環境下，原本建立 `pyproject.toml` 時不會有 `uv.lock` 檔案  
-要先建立一個虛擬環境
-```bash
-cd fastapi
-uv venv
-uv sync
-```
+- [Workspace 鏡像區](https://tsukisama9292.github.io/kasm_registry/)  
+- [Docker Hub](https://hub.docker.com/r/tsukisama9292/ubuntu-jammy-dind)  
