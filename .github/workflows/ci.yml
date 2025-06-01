@@ -5,7 +5,7 @@ on:
     branches:
       - dev
   workflow_dispatch:
-    
+
 jobs:
   ci:
     runs-on: ci
@@ -18,12 +18,12 @@ jobs:
       - name: Build Application
         run: |
           echo "Building Docker Image..."
-          docker-compose -f docker-compose-server.yml build --no-cache --pull
+          docker compose -f docker-compose.yml build --no-cache --pull
       
       # 啟動容器群，刻意等待 5 秒鐘，確保容器啟動完成
       - name: Start Application
         run: |
-          docker-compose -f docker-compose-server.yml up -d
+          docker compose -f docker-compose.yml up -d
           sleep 5
       
       # 執行測試
@@ -32,3 +32,17 @@ jobs:
           echo "Running Tests..."
           docker exec ai_server_sample_fastapi bash -c "source /venv/.venv/bin/activate && pytest -s"
           echo "Tests completed!"
+      
+      # 停止容器群
+      - name: Clear Application
+        if: always()
+        run: |
+          docker compose -f docker-compose.yml down
+      
+      # 清理 Docker 資源
+      - name: Clean up Docker
+        if: always()
+        run: |
+          docker buildx prune --all --force
+          docker system prune -af
+          docker volume prune -f
