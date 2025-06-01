@@ -1,0 +1,25 @@
+x-default-opts: &default-opts
+  restart: always               # always restart the container unless stopped manually
+  tty: true                     # allocate a pseudo-TTY
+  stdin_open: true              # keep stdin open
+  privileged: false             # to avoid host kernel sharing
+  ipc: private                  # to avoid IPC namespace sharing with the host
+
+
+services:
+  ollama:                       # Ollama service configuration
+    image: ollama/ollama:latest # Use the latest Ollama image
+    container_name: ai_server_sample_ollama
+    <<: *default-opts
+    ports:
+      - "11434:11434"           # Expose the Ollama API port
+    volumes:
+      - ollama:/root/.ollama    # Mount a volume for Ollama data
+    networks:
+      - ollama_network
+
+networks:
+  ollama_network:               # Define a custom network for Ollama
+
+volumes:
+  ollama: {}
