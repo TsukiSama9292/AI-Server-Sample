@@ -201,6 +201,13 @@ docker compose -f docker-compose-ollama.yml up -d
 docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"
 ```
 
+### 開發環境不限，但必須有 Docker 和 Docker Compose
+可以考慮使用 [Kasm Workspace](https://www.kasmweb.com/)  
+本人也有提供 Kasm 的鏡像範本，除了官方的 ubuntu dind 鏡像功能之外  
+額外安裝 dbeaver, nvm, npm, node.js, Postman, Discord  
+- [Workspace 鏡像區](https://tsukisama9292.github.io/kasm_registry/)
+- [Docker Hub](https://hub.docker.com/r/tsukisama9292/ubuntu-jammy-dind)
+
 ### 建立 uv.lock - 該儲存庫已經建立好了(可略過該步驟)
 需要在本來就有 UV 的環境下，原本建立 `pyproject.toml` 時不會有 `uv.lock` 檔案  
 要先建立一個虛擬環境
@@ -209,5 +216,3 @@ cd fastapi
 uv venv
 uv sync
 ```
-
-### 

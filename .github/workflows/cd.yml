@@ -24,12 +24,12 @@ jobs:
       - name: Build Application
         run: |
           echo "Building Docker Image..."
-          docker compose -f docker-compose-cd.yml build --no-cache --pull
+          docker compose -f docker-compose-server.yml build --no-cache --pull
       
       # 啟動容器群
       - name: Start Application
         run: |
-          docker compose -f docker-compose-cd.yml up -d
+          docker compose -f docker-compose-server.yml up -d
       
       # 清理 Docker 資源
       - name: Clean up Docker
