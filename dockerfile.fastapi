@@ -28,7 +28,7 @@ RUN apt-get install -y \
     clang \
     libpq-dev
 
-# 安裝 UV 最新版
+# 安裝 uv 最新版
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
@@ -45,5 +45,4 @@ RUN uv sync
 RUN mkdir /app
 COPY ./fastapi/ /app/
 WORKDIR /app
-RUN chmod +x /app/alembic.sh
 RUN chmod +x /app/entrypoint.sh
