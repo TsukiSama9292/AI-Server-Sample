@@ -2,7 +2,7 @@ from langchain_ollama import ChatOllama
 from ai_sample.core.settings import setting
 import json
 from langchain.prompts import ChatPromptTemplate
-from ai_sample.prompt.chatTemplate import chatTemplate
+from ai_sample.prompt.chatTemplate import chat_template
 from langchain.schema.output_parser import StrOutputParser
 
 async def chatbot(
@@ -20,14 +20,11 @@ async def chatbot(
         base_url=setting.ollama_api_url,
         keep_alive=300,
     )
-    messages = ChatPromptTemplate.from_messages(chatTemplate)
+    messages = ChatPromptTemplate.from_messages(chat_template)
     chain = messages | model | StrOutputParser()
-    input_dict = {"question": question}
-    generator = chain.astream(input_dict)
     
-    async for msg in generator:
-        if msg is None or msg == "":
+    async for chunk in chain.astream(input={"question":question}):
+        if chunk is None or chunk == "":
             continue
-        yield f"data:{json.dumps({'context': msg, 'status': 'streaming'}, ensure_ascii=False)}\n\n"
-
-    yield f"data:{json.dumps({'context': '', 'status': 'done'}, ensure_ascii=False)}\n\n"
+        yield f"data: {json.dumps({'context': chunk, 'status': 'streaming'}, ensure_ascii=False)}\n\n"
+    yield f"data: {json.dumps({'context': '', 'status': 'done'}, ensure_ascii=False)}\n\n"

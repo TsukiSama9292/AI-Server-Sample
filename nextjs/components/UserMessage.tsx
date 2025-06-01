@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styles from '@styles/chat.module.css';
 import { Message } from '@customTypes/MessageTypes';
 
-interface AgentMessageProps {
+interface UserMessageProps {
   message: Message;
 }
 
-const AgentMessage: React.FC<AgentMessageProps> = ({ message }) => {
+const UserMessage: React.FC<UserMessageProps> = ({ message }) => {
   const [displayedText, setDisplayedText] = useState<string>('');
   const { content, isStreaming } = message;
 
@@ -29,13 +29,13 @@ const AgentMessage: React.FC<AgentMessageProps> = ({ message }) => {
   }, [content, isStreaming]);
 
   return (
-    <div className={styles.agentContainer}>
-      <div className={styles.agentBubble}>
+    <div className={styles.userContainer}>
+      <div className={styles.userBubble}>
         <p>{displayedText}</p>
-        {isStreaming && <span className={styles.streamingCursor}>▌</span>}
+        {isStreaming && <span className={styles.streamingCursor}></span>}
       </div>
     </div>
   );
 };
 
-export default AgentMessage;
+export default UserMessage;

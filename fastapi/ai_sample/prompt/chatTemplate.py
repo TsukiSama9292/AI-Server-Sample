@@ -1,3 +1,4 @@
-chatTemplate = """You are a helpful assistant.
-Your task is to answer questions based on the provided context.
-"""
+chat_template = [
+    ("system", "You are a helpful assistant."),
+    ("human", "{question}")
+]
