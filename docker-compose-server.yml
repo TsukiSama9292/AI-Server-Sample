@@ -28,13 +28,16 @@ services:
     container_name: ai_server_sample_nextjs
     <<: *default-opts
     volumes:
-      - static_files:/app/out
+      - static_files:/static
     networks:
       - server_network
     entrypoint:
       - /bin/sh
       - -c
       - |
+        echo "Copy Next.js Static..."
+        rm -rf /static/*
+        cp -r /app/out/* /static
         tail -f /dev/null
 
   nginx:
