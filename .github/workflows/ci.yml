@@ -5,7 +5,7 @@ on:
     branches:
       - dev
   workflow_dispatch:
-    
+
 jobs:
   ci:
     runs-on: ci
@@ -32,3 +32,17 @@ jobs:
           echo "Running Tests..."
           docker exec ai_server_sample_fastapi bash -c "source /venv/.venv/bin/activate && pytest -s"
           echo "Tests completed!"
+      
+      # 停止容器群
+      - name: Clear Application
+        if: always()
+        run: |
+          docker-compose -f docker-compose-server.yml down
+      
+      # 清理 Docker 資源
+      - name: Clean up Docker
+        if: always()
+        run: |
+          docker buildx prune --all --force
+          docker system prune -af
+          docker volume prune -f
