@@ -12,6 +12,7 @@ interface ChatInputProps {
 const ChatInput: React.FC<ChatInputProps> = ({ onMessage }) => {
   const [question, setQuestion] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleSend = async () => {
     if (!question.trim()) return;
@@ -25,6 +26,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onMessage }) => {
       content: question,
       isStreaming: false
     });
+    setQuestion(''); // 立即清空輸入框
+    // 重新聚焦輸入框（延遲到渲染後）
+    setTimeout(() => {
+      if (inputRef.current) inputRef.current.focus();
+    }, 0);
 
     let accumulated = '';
     let buffer = '';
@@ -90,19 +96,24 @@ const ChatInput: React.FC<ChatInputProps> = ({ onMessage }) => {
       console.error('Error in SSE fetch:', error);
     } finally {
       setIsSending(false);
-      setQuestion('');
     }
   };
 
   return (
     <div className="flex items-center space-x-2">
       <input
+        ref={inputRef}
         type="text"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !isSending && question.trim()) {
+            handleSend();
+            e.preventDefault();
+          }
+        }}
         placeholder="輸入您的問題..."
         className="flex-1 border border-gray-300 rounded px-4 py-2"
-        disabled={isSending}
       />
       <button
         onClick={handleSend}
