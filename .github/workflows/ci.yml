@@ -14,4 +14,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      # 不需要啟用 Ollama 容器，直接使用 CD 環境的 Ollama 容器
+      # 建立必須要的鏡像，此處只需要建立 FastAPI 的鏡像
+      - name: Build Application
+        run: |
+          echo "Building Docker Image..."
+          docker-compose -f docker-compose-server.yml build --no-cache --pull
+      
+      # 啟動容器群，刻意等待 5 秒鐘，確保容器啟動完成
+      - name: Start Application
+        run: |
+          docker-compose -f docker-compose-server.yml up -d
+          sleep 5
+      
+      # 執行測試
+      - name: Run Tests
+        run: |
+          echo "Running Tests..."
+          docker exec ai_server_sample_fastapi bash -c "source /venv/.venv/bin/activate && pytest -s"
+          echo "Tests completed!"
