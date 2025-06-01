@@ -6,11 +6,12 @@ Docker Compose 來管理多個服務，包括 FastAPI、Next.js、Nginx 和 Post
 此範本適用於開發和持續集成（CI/CD）環境。
 
 ## 技術棧介紹
-- **CI/CD**: 使用 GitHub Actions 來實現持續集成和部署。
-- **FastAPI**: 用於建立 API 的 Python 框架，提供高效能的 Web 服務。
-- **Next.js**: 用於建立前端應用程式的 React 框架，提供伺服器端渲染和靜態網站生成。
-- **Nginx**: 用作反向代理伺服器，負責處理 HTTP 請求並轉發到後端服務。
-- **Ollama**: 用於 AI 模型的容器化服務，提供模型推理功能。
+- **CI/CD**: Github Actions + 分支策略，實現持續集成和部署。
+- **Proxy Server**: Nginx 用作反向代理伺服器，負責處理 HTTP 請求並轉發到前後端服務。
+- **Back-End**: FastAPI + LangChain，建立 API 的 Python 框架，LangChain 建立 Agent 邏輯處理。
+- **Front-End**: Next.js(React) 建立前端網頁。
+- **AI Server**: Ollama (支援 CPU)，提供 AI 模型服務。
+- **DB**: PostSQL + PGLite(預計，現在還沒)，用於資料存儲。
 
 ## 架構圖 - [線上架構圖](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=ai-sample-server.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1QD_Iwv_ZQpG5kS-wWtm0l2T6u9CXrsgk%26export%3Ddownload)
 ![架構圖](./img/ai-sample-server.drawio.png)
