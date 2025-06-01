@@ -1,0 +1,52 @@
+/* styles/chat.module.css */
+
+/* 容器共用設定 */
+.agentContainer {
+  display: flex;
+  justify-content: flex-start;   /* 靠左 */
+  padding: 8px;
+}
+
+.userContainer {
+  display: flex;
+  justify-content: flex-end;    /* 靠右 */
+  padding: 8px;
+}
+
+/* Agent 聊天框樣式 */
+.agentBubble {
+  max-width: 60%;
+  background-color: #f1f0f0;
+  color: #333;
+  border-radius: 12px;
+  padding: 12px 16px;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* User 聊天框樣式 */
+.userBubble {
+  max-width: 60%;
+  background-color: #007aff;
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* 流式顯示游標 */
+.streamingCursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+/* 游標閃爍效果 */
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}

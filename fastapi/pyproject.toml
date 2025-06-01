@@ -1,0 +1,25 @@
+[project]
+name = "AI-Sample"
+version = "0.0.1"
+requires-python = "==3.12.8"
+dependencies = [
+    "setuptools",
+    "ipykernel",
+    "langchain",
+    "langchain_community",
+    "langchain_ollama",
+    "fastapi",
+    "pydantic",
+    "uvicorn",
+    "gunicorn",
+    "sqlalchemy",
+    "alembic",
+    "pytest",
+    "pytest-asyncio",
+    "python-dotenv",
+    "pygraphviz",
+    "nest_asyncio",
+    "ipython",
+    "psycopg2-binary",
+    "asyncpg",
+]

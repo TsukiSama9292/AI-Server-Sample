@@ -1,0 +1,17 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+    
+jobs:
+  ci:
+    runs-on: ci
+    steps:
+      # 檢查程式碼，拉取最新的程式碼
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      # 不需要啟用 Ollama 容器，直接使用 CD 環境的 Ollama 容器

@@ -1,0 +1,49 @@
+FROM python:3.12-slim
+
+# 避免 Python 生成 .pyc 文件
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# 安裝基本的系統工具和依賴
+RUN apt-get update && \
+    apt-get install -y \
+    wget \
+    bzip2 \
+    ca-certificates \
+    curl \
+    git \
+    build-essential \
+    python3-dev \
+    docker.io \
+    graphviz \
+    graphviz-dev
+
+# PostgreSQL 相關依賴
+RUN apt-get install -y \
+    pkg-config \
+    postgresql-client
+
+# PostgreSQL 相關依賴
+RUN apt-get install -y \
+    libgraphviz-dev \
+    clang \
+    libpq-dev
+
+# 安裝 UV 最新版
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
+# 清除不必要的包和緩存
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /venv/
+WORKDIR /venv
+COPY ./fastapi/pyproject.toml /venv/pyproject.toml
+COPY ./fastapi/uv.lock /venv/uv.lock
+RUN uv venv
+RUN uv sync
+
+RUN mkdir /app
+COPY ./fastapi/ /app/
+WORKDIR /app
+RUN chmod +x /app/alembic.sh
+RUN chmod +x /app/entrypoint.sh

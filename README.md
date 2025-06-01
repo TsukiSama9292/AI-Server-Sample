@@ -190,12 +190,24 @@ AI-Server-Sample/
   - 完成後，回到 GitHub 儲存庫的 Runner 設定頁面，應該會看到新建立的 Runner
     ![GitHub Runner 設定完成](./img/github-runner-complete.png)
 
-### Ollama 啟用服務
+### CD 環境
+因為有用 GitHub Actions Runner，所以可以直接使用 GitHub Actions 來部署  
+以下是手動部署的步驟：
 ```bash
 docker compose -f docker-compose-ollama.yml up -d
 ```
-
-### Ollama 預先下載模型 - 使用量化感知訓練模型，降低記憶體需求
+可選: Ollama 預先下載模型 - 使用量化感知訓練模型，降低記憶體需求
 ```bash
 docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"
 ```
+
+### 建立 uv.lock - 該儲存庫已經建立好了(可略過該步驟)
+需要在本來就有 UV 的環境下，原本建立 `pyproject.toml` 時不會有 `uv.lock` 檔案  
+要先建立一個虛擬環境
+```bash
+cd fastapi
+uv venv
+uv sync
+```
+
+### 
