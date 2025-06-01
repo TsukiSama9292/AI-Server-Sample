@@ -4,14 +4,6 @@ x-default-opts: &default-opts
   stdin_open: true              # keep stdin open
   privileged: false             # to avoid host kernel sharing
   ipc: private                  # to avoid IPC namespace sharing with the host
-
-x-web-opts: &web-opts
-  restart: no                   # do not restart the container automatically
-  tty: true                     # allocate a pseudo-TTY
-  stdin_open: true              # keep stdin open
-  privileged: false             # to avoid host kernel sharing
-  ipc: private                  # to avoid IPC namespace sharing with the host
-
 services:
   fastapi:                      # FastAPI service configuration
     build:
@@ -34,7 +26,7 @@ services:
       context: .                # Build context is the current directory
       dockerfile: dockerfile.nextjs # Use the specified Dockerfile for Next.js
     container_name: ai_server_sample_nextjs
-    <<: *web-opts
+    <<: *default-opts
     volumes:
       - static_files:/app/out
     networks:
@@ -43,9 +35,7 @@ services:
       - /bin/sh
       - -c
       - |
-        cd /app
-        npm install
-        npm run build
+        tail -f /dev/null
 
   nginx:
     build: 

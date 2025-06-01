@@ -4,3 +4,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY ./nextjs/ /app/
+
+RUN npm install && \
+    npm run build
+
