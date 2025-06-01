@@ -1,0 +1,21 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # 允許手動觸發工作流程
+
+jobs:
+  cd:
+    runs-on: cd
+    steps: # 執行步驟
+      # 檢查程式碼，拉取最新的程式碼
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      # 啟用 Ollama 容器
+      - name: Start Ollama Container
+        run: |
+          echo "Starting Ollama Container..."
+          docker compose -f docker-compose-ollama.yml up -d
