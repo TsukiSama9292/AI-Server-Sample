@@ -36,7 +36,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onMessage }) => {
     let buffer = '';
 
     try {
-      const response = await fetch('http://localhost:60080/api/chat/chatbot', {
+      // 動態取得 baseurl，根據使用者瀏覽器當前網址
+      const apiBaseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+      const apiUrl = `${apiBaseUrl}/api/chat/chatbot`;
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
