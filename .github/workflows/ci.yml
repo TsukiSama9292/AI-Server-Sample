@@ -1,46 +1,47 @@
-name: CI Pipeline
+name: 🛠️ CI Pipeline
 
 on:
   push:
     branches:
       - dev
-  workflow_dispatch:
+  workflow_dispatch: # 🖱️ 手動觸發
 
 jobs:
   ci:
     runs-on: ci
     steps:
-      # 檢查程式碼，拉取最新的程式碼
-      - name: Checkout code
+      # 🔍 檢查程式碼，拉取最新的程式碼
+      - name: 📥 Checkout code
         uses: actions/checkout@v2
       
-      - name: Build Application
+      # 🏗️ 建置應用程式鏡像
+      - name: 🛠️ Build Application
         run: |
           echo "Building Docker Image..."
           docker compose -f docker-compose-server.yml build --no-cache --pull
       
-      # 啟動容器群，刻意等待 5 秒鐘，確保容器啟動完成
-      - name: Start Application
+      # ▶️ 啟動容器群，等待 5 秒確保啟動完成
+      - name: 🚀 Start Application
         run: |
           echo "Starting Docker Containers..."
           docker compose -f docker-compose-server.yml up -d
           sleep 5
       
-      # 執行測試
-      - name: Run Tests
+      # ✅ 執行測試
+      - name: 🧪 Run Tests
         run: |
           echo "Running Tests..."
           docker exec ai_server_sample_fastapi bash -c "source /venv/.venv/bin/activate && pytest -s"
           echo "Tests completed!"
       
-      # 停止容器群
-      - name: Clear Application
+      # ⏹️ 停止容器群
+      - name: 🛑 Clear Application
         if: always()
         run: |
           docker compose -f docker-compose-server.yml down
       
-      # 清理 Docker 資源
-      - name: Clean up Docker
+      # 🧹 清理 Docker 資源
+      - name: 🧹 Clean up Docker
         if: always()
         run: |
           docker buildx prune --all --force
