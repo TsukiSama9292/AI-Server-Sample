@@ -14,7 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      # 建立必須要的鏡像，此處只需要建立 FastAPI 的鏡像
       - name: Build Application
         run: |
           echo "Building Docker Image..."
