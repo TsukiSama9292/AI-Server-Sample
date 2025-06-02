@@ -55,14 +55,14 @@ docker compose -f docker-compose-ollama.yml up -d                    # 啟用 Ol
 
 ## 🛠️ 技術棧  
 
-| 項目          | 工具                          | 說明                                                                 | 介紹 |
-|---------------|-------------------------------|----------------------------------------------------------------------| ------------------------------------------------------------------|
-| **CI/CD**     | ⚙️ Github Actions             | 分支策略，實現持續集成和部署 🚀                                      | - [CI](./.github/workflows/ci.yml)<br>- [CD](.github/workflows/cd.yml) |
-| **Proxy Server** | 🌐 Nginx                   | 作為反向代理伺服器，處理 HTTP 請求並轉發至前後端服務 🔁               | [Nginx](./nginx/README.md) |
-| **Back-End**  | 🐍 FastAPI + 🧠 LangChain     | 建立 API 的 Python 框架，LangChain 負責 Agent 邏輯處理              | [FastAPI](./fastapi/README.md) |
-| **Front-End** | 💻 Next.js (React)            | 建立前端網頁 🖼️                                                       | [Next.js](./nextjs/README.md) |
-| **AI Server** | 🤖 Ollama                     | 支援 CPU，提供 AI 模型服務 🧩                                        | [Ollama](https://hub.docker.com/r/ollama/ollama) |
-| **DB**        | 🐘 PostgreSQL + 🧪 PGLite     | 預計使用，資料存儲用途 💾                                             | - [PostgreSQL](https://hub.docker.com/_/postgres)<br>- [PGLite](https://pglite.dev/) |
+| 項目          | 工具                          | 說明                                                                 |
+|---------------|-------------------------------|--------------------------------------------------------------------|
+| **CI/CD**     | ⚙️ Github Actions             | 分支策略，實現持續集成和部署 🚀                                        |
+| **Proxy Server** | 🌐 Nginx                   | 作為反向代理伺服器，處理 HTTP 請求並轉發至前後端服務 🔁                   |
+| **Back-End**  | 🐍 FastAPI + 🧠 LangChain     | 建立 API 的 Python 框架，LangChain 負責 Agent 邏輯處理                |
+| **Front-End** | 💻 Next.js (React)            | 建立前端網頁 🖼️                                                     |
+| **AI Server** | 🤖 Ollama                     | 支援 CPU，提供 AI 模型服務 🧩                                        |
+| **DB**        | 🐘 PostgreSQL + 🧪 PGLite     | 預計使用，資料存儲用途 💾                                             |
 
 
 
