@@ -66,12 +66,17 @@ docker compose -f docker-compose-ollama.yml up -d                    # 啟用 Ol
 
 
 
-## 架構圖 - [線上架構圖](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=ai-sample-server.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1QD_Iwv_ZQpG5kS-wWtm0l2T6u9CXrsgk%26export%3Ddownload)
+## 🏗️ 架構圖 - [線上架構圖](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=ai-sample-server.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1QD_Iwv_ZQpG5kS-wWtm0l2T6u9CXrsgk%26export%3Ddownload)
 
 ![架構圖](./img/ai-sample-server.drawio.png)
 
-## ⚙️ 前置條件
+## 📚 推薦閱讀文獻 - 新手友善
 
+[💻 虛擬機介紹、安裝、建立指南 🚀](./doc/VM.md)  
+
+[🔁 CI/CD 介紹、操作說明 👨‍💻](./doc/CICD.md)  
+
+[🐳 Docker 介紹、安裝、中心 📦](./doc/Docker.md)  
 
 
 ---
@@ -99,118 +104,11 @@ AI-Server-Sample/
 └── 📘 README.md                   # 📝 專案說明文件
 ```
 
-## 📘 使用說明
-
-### 🖥️ 建立 CI VM
-
-- 🧠 **CPU**: 4 核心  
-- 🧵 **RAM**: 8 GB  
-- 💾 **磁碟**: 100 GB  
-- 🌐 **網路**: 橋接模式，選擇主機的網路介面卡，IP: `192.168.0.241`  
-- 🐧 **作業系統**: Ubuntu 22.04 LTS  
-- 👤 **使用者**: ubuntu  
-- 🔐 **密碼**: ubuntu  
-- 🏷️ **伺服器名稱**: `ubuntu-2204-ci`  
-
-- 🛠️ **安裝步驟**:
-  1. 🧱 建立虛擬機  
-     ![CI虛擬機](./img/vm-ci.png)
-  2. 🌐 網路設定  
-     ![網路設定](./img/network-setting.png)
-  3. ⚙️ 啟動虛擬機並進行系統安裝  
-     在安裝過程中設定網路，請照自己的路由器設定 IP 位址，  
-     否則可建立 `僅限主機` 的網路  
-     ![VM-網路設定](./img/ci-ipv4-config.png)
-  4. 🔌 系統安裝完畢，重啟後使用 SSH 登入  
-     ![SSH 登入](./img/ssh-login.png)
-  5. 🐳 [安裝 Docker 社群版](#前置條件)
-  6. 📦 [先完成 CD 環境的虛擬機](#建立-cd-環境)
-
-### 🖥️ 建立 CD VM (複製 CI VM)
-
-- 🧠 **CPU**: 4 核心  
-- 🧵 **RAM**: 16 GB  
-- 💾 **磁碟**: 100 GB  
-- 🌐 **網路**: 橋接模式，選擇主機的網路介面卡，IP: `192.168.0.242`  
-
-- 🛠️ **安裝步驟**:
-  1. 📋 複製 CI 環境的虛擬機  
-     ![虛擬機複製](./img/vm-clone.gif)
-
-  2. 🔑 遺忘 SSH 金鑰  
-      ```bash
-      ssh-keygen -R 192.168.0.241
-      ```
-
-  3. 🔐 SSH 登入，修改虛擬機的名稱  
-      ```bash
-      ssh ubuntu@192.168.0.241
-      ```
-      ```bash
-      sudo hostnamectl set-hostname ubuntu-2204-cd
-      ```
-      ```bash
-      sudo nano /etc/hosts
-      ```
-      ```bash
-      127.0.1.1   ubuntu-2204-cd
-      ```
-
-  4. 🌍 修改虛擬機的網路設定，確保 IP 位址不同  
-      ```bash
-      sudo nano /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
-      ```
-      ```bash
-      network: {config: disabled}
-      ```
-      ```bash
-      sudo nano /etc/netplan/50-cloud-init.yaml
-      ```
-      ```yaml
-      network:
-          ethernets:
-              enp0s3:
-                  addresses:
-                  - 192.168.0.242/24
-                  nameservers:
-                      addresses:
-                      - 8.8.8.8
-                      search: []
-                  routes:
-                  -   to: default
-                      via: 192.168.0.1
-          version: 2
-      ```
-      ```bash
-      sudo netplan apply
-      ```
-
-  5. ❌ 關閉 SSH 視窗
-
-  6. 🔐 SSH 登入新 IP  
-      ```bash
-      ssh ubuntu@192.168.0.242
-      ```
-
-### 🏭 CD 環境  
-有用 GitHub Actions Runner  
-可直接使用 GitHub Actions 部署 🚀  
-也可以手動部署，以下為步驟：
-
-1. ▶️ 啟用 Ollama 服務
-```bash
-docker compose -f docker-compose-ollama.yml up -d
-```
-2. ⚙️ (可選) 預先下載模型
-```bash
-docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"
-```
-
-### 🖥️ 開發環境不限，但必須有 Docker 和 Docker Compose 🐳
-
+## 🖥️ 推薦的開發環境
 可以考慮使用 [Kasm Workspace](https://www.kasmweb.com/) 🚀  
 本人也有提供 Kasm 的鏡像範本，除了官方的 ubuntu dind 鏡像功能之外  
 額外安裝了 dbeaver 🗃️, nvm 🔧, npm 📦, node.js 🟢, Postman 📬, Discord 💬  
 
-- 🏷️ [Workspace 鏡像區](https://tsukisama9292.github.io/kasm_registry/)  
-- 🐳 [Docker Hub](https://hub.docker.com/r/tsukisama9292/ubuntu-jammy-dind)  
+🏷️ [Workspace 鏡像區](https://tsukisama9292.github.io/kasm_registry/)  
+
+🐳 [Docker Hub](https://hub.docker.com/r/tsukisama9292/ubuntu-jammy-dind)  
