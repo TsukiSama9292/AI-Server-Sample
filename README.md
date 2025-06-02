@@ -5,11 +5,9 @@
 <a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
   <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" width="150" />
 </a>
-&nbsp;&nbsp;
 <a href="https://github.com/TsukiSama9292/AI-Server-Sample/tree/dev">
   <img src="https://img.shields.io/badge/Version-Dev-blue?style=for-the-badge" alt="Latest Version" />
 </a>
-&nbsp;&nbsp;
 <a href="https://github.com/TsukiSama9292/AI-Server-Sample/blob/main/LICENSE">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
 </a>
@@ -84,6 +82,7 @@ AI-Server-Sample/
 ├── 🐍 dockerfile.fastapi          # ⚙️ FastAPI 的 Dockerfile
 ├── 💻 dockerfile.nextjs           # 🖼️ Next.js 的 Dockerfile
 ├── 🌐 dockerfile.nginx            # 🔁 Nginx 的 Dockerfile
+├── docs                           # 📚 組件說明文件目錄
 ├── 🧾 .env                        # 📌 環境變數檔案 → For Docker Compose
 ├── 🐍 fastapi                     # 🧠 FastAPI 應用程式的目錄
 ├── 🔧 .github                     # 🤖 GitHub Actions 的目錄
