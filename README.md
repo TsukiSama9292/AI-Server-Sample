@@ -72,11 +72,11 @@ docker compose -f docker-compose-ollama.yml up -d                    # 啟用 Ol
 
 ## 📚 推薦閱讀文獻 - 新手友善
 
-[💻 虛擬機介紹、安裝、建立指南 🚀](./doc/VM.md)  
+[💻 虛擬機介紹、安裝、建立指南 🚀](./docs/VM.md)  
 
-[🔁 CI/CD 介紹、操作說明 👨‍💻](./doc/CICD.md)  
+[🔁 CI/CD 介紹、操作說明 👨‍💻](./docs/CICD.md)  
 
-[🐳 Docker 介紹、安裝、中心 📦](./doc/Docker.md)  
+[🐳 Docker 介紹、安裝、中心 📦](./docs/Docker.md)  
 
 
 ---
