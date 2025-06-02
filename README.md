@@ -91,7 +91,7 @@ AI-Server-Sample/
 ├── 💻 dockerfile.nextjs           # 🖼️ Next.js 的 Dockerfile
 ├── 🌐 dockerfile.nginx            # 🔁 Nginx 的 Dockerfile
 ├── docs                           # 📚 組件說明文件目錄
-|── 🧾 .env.example                # 📌 環境變數範本檔案 (Docker Compose 可用)
+├── 🧾 .env.example                # 📌 環境變數範本檔案 (Docker Compose 可用)
 ├── 🐍 fastapi                     # 🧠 FastAPI 應用程式的目錄
 ├── 🔧 .github                     # 🤖 GitHub Actions 的目錄
 │   └── 🔁 workflows               # ⚙️ 工作流程的目錄
