@@ -9,6 +9,5 @@ Nginx 是一個高效能的 HTTP 和反向代理伺服器，廣泛用於靜態�
 nginx/
 ├── default.conf   # ⚙️ 預設配置檔案，Server 會使用這個配置 
 ├── dev.conf       # 🧪 開發環境配置檔案
-├── nginx.conf     # 📝 Nginx 主配置檔案
-└── README.md      # 📄 專案說明文件
+└── nginx.conf     # 📝 Nginx 主配置檔案
 ```

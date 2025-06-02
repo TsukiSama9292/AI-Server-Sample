@@ -41,7 +41,6 @@ create-next-app@15.3.3
 │   ├── next.svg                # ⚡ Next.js 標誌
 │   ├── vercel.svg              # 🚀 Vercel 標誌
 │   └── window.svg              # 🪟 窗口圖示
-├── README.md                   # 📖 專案說明文件
 ├── src                         # 💻 源碼目錄
 │   └── app                     # 📱 Next.js 應用程式目錄
 │       ├── favicon.ico         # 🖼️ 網站圖示

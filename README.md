@@ -1,9 +1,21 @@
-# AI Server 範本
+# 🚀 [AI 網頁伺服器範本](https://github.com/TsukiSama9292/AI-Server-Sample)
 
-## 🚀 [AI 網頁伺服器範本 - 最新程式碼 dev 分支](https://github.com/TsukiSama9292/AI-Server-Sample/tree/dev)
+<div align="center">
+
+<a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
+  <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" width="150" />
+</a>
+<a href="https://github.com/TsukiSama9292/AI-Server-Sample/tree/dev">
+  <img src="https://img.shields.io/badge/Version-Dev-blue?style=for-the-badge" alt="Latest Version" />
+</a>
+<a href="https://github.com/TsukiSama9292/AI-Server-Sample/blob/main/LICENSE">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
+</a>
+
+</div>
 
 ## 🧩 用途  
-📚 教學用  
+📚 教學用，提供"全端"、"AI Agent"、"CI/CD" 的範本  
 🙏 供有興趣者參考，不用發 PR，請自由取用  
 
 ## ✨ 特色  
@@ -11,8 +23,14 @@
 📘 詳細的操作引導  
 📁 具備檔案結構介紹  
 
-## 📜 開源協議  
-✅ MIT - 寬鬆協議
+## ⚡ 快速開始
+```bash
+git clone https://github.com/TsukiSama9292/AI-Server-Sample.git      # 下載專案(部屬分支)
+cd AI-Server-Sample                                                  # 進入專案資料夾
+cp .env.example .env                                                 # 複製範本環境變數
+docker compose up -d                                                 # 啟用全端網頁服務
+docker compose -f docker-compose-ollama.yml up -d                    # 啟用 Ollama 服務
+```
 
 ## 🛠️ 技術棧  
 
@@ -64,6 +82,7 @@ AI-Server-Sample/
 ├── 🐍 dockerfile.fastapi          # ⚙️ FastAPI 的 Dockerfile
 ├── 💻 dockerfile.nextjs           # 🖼️ Next.js 的 Dockerfile
 ├── 🌐 dockerfile.nginx            # 🔁 Nginx 的 Dockerfile
+├── docs                           # 📚 組件說明文件目錄
 ├── 🧾 .env                        # 📌 環境變數檔案 → For Docker Compose
 ├── 🐍 fastapi                     # 🧠 FastAPI 應用程式的目錄
 ├── 🔧 .github                     # 🤖 GitHub Actions 的目錄
@@ -143,6 +162,7 @@ AI-Server-Sample/
       ```
       ```bash
       sudo nano /etc/netplan/50-cloud-init.yaml
+      ```
       ```yaml
       network:
           ethernets:

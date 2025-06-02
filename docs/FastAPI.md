@@ -46,6 +46,5 @@ app/
 ├── entrypoint.sh               # 🚀 容器啟動腳本，用於啟動 FastAPI
 ├── main.py                     # ⚡ FastAPI 應用程式入口
 ├── pyproject.toml              # 📦 Python 專案設定，包含依賴項，uv 讀取它建立 uv.lock
-├── README.md                   # 📖 專案說明文件
 └── uv.lock                     # 🔐 uv 依賴鎖定檔案
 ```
