@@ -47,15 +47,15 @@
 
 - 🛠️ **安裝步驟**:
   1. 🧱 建立虛擬機  
-     ![CI虛擬機](./img/vm-ci.png)
+     ![CI虛擬機](../img/vm-ci.png)
   2. 🌐 網路設定  
-     ![網路設定](./img/network-setting.png)
+     ![網路設定](../img/network-setting.png)
   3. ⚙️ 啟動虛擬機並進行系統安裝  
      在安裝過程中設定網路，請照自己的路由器設定 IP 位址，  
      否則可建立 `僅限主機` 的網路  
-     ![VM-網路設定](./img/ci-ipv4-config.png)
+     ![VM-網路設定](../img/ci-ipv4-config.png)
   4. 🔌 系統安裝完畢，重啟後使用 SSH 登入  
-     ![SSH 登入](./img/ssh-login.png)
+     ![SSH 登入](../img/ssh-login.png)
   5. 🐳 [安裝 Docker 社群版](#前置條件)
   6. 📦 [先完成 CD 環境的虛擬機](#建立-cd-環境)
 
@@ -68,7 +68,7 @@
 
 - 🛠️ **安裝步驟**:
   1. 📋 複製 CI 環境的虛擬機  
-     ![虛擬機複製](./img/vm-clone.gif)
+     ![虛擬機複製](../img/vm-clone.gif)
 
   2. 🔑 遺忘 SSH 金鑰  
       ```bash
