@@ -5,10 +5,19 @@ x-default-opts: &default-opts
   privileged: false
   ipc: private
 services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai_server_sample_ollama
+    <<: *default-opts
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    networks:
+      - server_network
+
   fastapi:
-    build:
-      context: .
-      dockerfile: dockerfile.fastapi
+    image: tsukisama9292:ai-sample-server:fastapi-dev
     container_name: ai_server_sample_fastapi
     <<: *default-opts
     networks:
@@ -22,9 +31,7 @@ services:
         ./entrypoint.sh
 
   nextjs:
-    build:
-      context: .
-      dockerfile: dockerfile.nextjs
+    image: tsukisama9292:ai-sample-server:nextjs-dev
     container_name: ai_server_sample_nextjs
     <<: *default-opts
     volumes:
@@ -41,9 +48,7 @@ services:
         tail -f /dev/null
 
   nginx:
-    build: 
-      context: .
-      dockerfile: dockerfile.nginx
+    image: tsukisama9292:ai-sample-server:nginx-dev
     container_name: ai_server_sample_nginx
     <<: *default-opts
     ports:

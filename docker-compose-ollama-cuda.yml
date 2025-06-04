@@ -1,0 +1,31 @@
+x-default-opts: &default-opts
+  restart: always
+  tty: true
+  stdin_open: true
+  privileged: false
+  ipc: private
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai_server_sample_ollama
+    <<: *default-opts
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    networks:
+      - ollama_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: "all"
+            capabilities: [gpu]
+
+networks:
+  ollama_network: 
+
+volumes:
+  ollama: {}

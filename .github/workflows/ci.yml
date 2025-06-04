@@ -8,7 +8,7 @@ on:
 
 jobs:
   ci:
-    runs-on: ci
+    runs-on: ubuntu-vm-ci # ci
     steps:
       # 🔍 檢查程式碼，拉取最新的程式碼
       - name: 📥 Checkout code
@@ -19,6 +19,7 @@ jobs:
         run: |
           echo "Setting environment variables..."
           cp .env.example .env
+          echo "OLLAMA_API_URL=http://${{ secrets.OLLAMA_SERVICE_IP_PORT }}" >> ./fastapi/.env
       
       # 🏗️ 建置應用程式鏡像
       - name: 🛠️ Build Application

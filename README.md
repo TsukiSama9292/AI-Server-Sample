@@ -31,6 +31,8 @@
 
 📁 具備檔案結構介紹  
 
+😊 作者本人很喜歡emoji，即便我編輯 Markdown 也會丟 AI 生成適合的 emoji
+
 ## 💻 系統需求
 
 - 🧠 **CPU**: 至少 4 核心（建議更多）  
@@ -46,11 +48,11 @@
 ## ⚡ 快速開始
 
 ```bash
-git clone https://github.com/TsukiSama9292/AI-Server-Sample.git      # 下載專案(部屬分支)
-cd AI-Server-Sample                                                  # 進入專案資料夾
-cp .env.example .env                                                 # 複製範本環境變數
-docker compose up -d                                                 # 啟用全端網頁服務
-docker compose -f docker-compose-ollama.yml up -d                    # 啟用 Ollama 服務
+git clone https://github.com/TsukiSama9292/AI-Server-Sample.git             # 下載專案(部屬分支)
+cd AI-Server-Sample                                                         # 進入專案資料夾
+cp .env.example .env                                                        # 複製範本環境變數
+docker compose -f docker-compose-all-cpu-user.yml up -d                     # CPU 模式下啟用所有服務(已編譯鏡像) 
+docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"  # 下載模型
 ```
 
 ## 🛠️ 技術棧  
@@ -84,7 +86,10 @@ docker compose -f docker-compose-ollama.yml up -d                    # 啟用 Ol
 ## 📁 檔案結構
 ```bash
 AI-Server-Sample/
-├── 🐳 docker-compose-ollama.yml   # 📦 CD 環境: Ollama 用的 docker-compose 檔案
+├── docker-compose-all-cpu.yml     # 🐳 所有服務 + CPU 運行 Ollama
+├── docker-compose-all-cuda.yml    # 🐳 所有服務 + GPU 運行 Ollama
+├── docker-compose-ollama-cpu.yml  # 🐳 CPU 運行 Ollama
+├── docker-compose-ollama-cuda.yml # 🐳 Nvidia GPU 運行 Ollama
 ├── 🐳 docker-compose-server.yml   # 🌐 伺服器用的 docker-compose 檔案
 ├── 🐳 docker-compose.yml          # 👨‍💻 開發用的 docker-compose 檔案
 ├── 🐍 dockerfile.fastapi          # ⚙️ FastAPI 的 Dockerfile

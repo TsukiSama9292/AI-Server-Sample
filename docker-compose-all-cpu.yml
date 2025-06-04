@@ -5,6 +5,17 @@ x-default-opts: &default-opts
   privileged: false
   ipc: private
 services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai_server_sample_ollama
+    <<: *default-opts
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    networks:
+      - server_network
+
   fastapi:
     build:
       context: .

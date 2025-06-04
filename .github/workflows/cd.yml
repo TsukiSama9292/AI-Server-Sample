@@ -1,9 +1,9 @@
 name: 🚀 CD Pipeline
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch: # 🖱️ 允許手動觸發工作流程
 
 jobs:
@@ -20,22 +20,16 @@ jobs:
           echo "Setting environment variables..."
           cp .env.example .env
       
-      # 🐳 啟用 Ollama 容器
-      - name: ⚡ Start Ollama Container
-        run: |
-          echo "Starting Ollama Container..."
-          docker compose -f docker-compose-ollama.yml up -d
-          
       # 🏗️ 建立必須要的鏡像，此處只需要建立 FastAPI 的鏡像
       - name: 🛠️ Build Application
         run: |
           echo "Building Docker Image..."
-          docker compose -f docker-compose-server.yml build --no-cache --pull
+          docker compose -f docker-compose-ollama-cpu.yml build --no-cache --pull
       
       # ▶️ 啟動容器群
       - name: 🚀 Start Application
         run: |
-          docker compose -f docker-compose-server.yml up -d
+          docker compose -f docker-compose-ollama-cpu.yml up -d
       
       # 🧹 清理 Docker 資源
       - name: 🧹 Clean up Docker
