@@ -25,13 +25,13 @@ jobs:
       - name: 🛠️ Build Application
         run: |
           echo "Building Docker Image..."
-          docker compose -f docker-compose-server.yml build --no-cache --pull
+          docker-compose -f docker-compose-server.yml build --no-cache --pull
       
       # ▶️ 啟動容器群，等待 5 秒確保啟動完成
       - name: 🚀 Start Application
         run: |
           echo "Starting Docker Containers..."
-          docker compose -f docker-compose-server.yml up -d
+          docker-compose -f docker-compose-server.yml up -d
           sleep 5
       
       # ✅ 執行測試
@@ -45,7 +45,7 @@ jobs:
       - name: 🛑 Clear Application
         if: always()
         run: |
-          docker compose -f docker-compose-server.yml down
+          docker-compose -f docker-compose-server.yml down
       
       # 🧹 清理 Docker 資源
       - name: 🧹 Clean up Docker
