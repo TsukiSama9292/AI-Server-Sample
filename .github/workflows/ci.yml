@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "Setting environment variables..."
           cp .env.example .env
-          echo "OLLAMA_API_URL=http://${{ secrets.OLLAMA_SERVICE_IP_PORT }}" >> ./fastapi/.env
+          echo -e "\nOLLAMA_API_URL=http://${{ secrets.OLLAMA_SERVICE_IP_PORT }}" >> ./fastapi/.env
       
       # 🏗️ 建置應用程式鏡像
       - name: 🛠️ Build Application
