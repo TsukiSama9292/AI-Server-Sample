@@ -37,8 +37,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /venv/
 WORKDIR /venv
-COPY ./fastapi/pyproject.toml /venv/pyproject.toml
-COPY ./fastapi/uv.lock /venv/uv.lock
+COPY fastapi/pyproject.toml /venv/pyproject.toml
+COPY fastapi/uv.lock /venv/uv.lock
 RUN uv venv
 RUN uv sync
 

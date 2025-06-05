@@ -1,0 +1,76 @@
+x-default-opts: &default-opts
+  restart: always
+  tty: true
+  stdin_open: true
+  privileged: false
+  ipc: private
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai_server_sample_ollama
+    <<: *default-opts
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    networks:
+      - server_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: "all"
+            capabilities: [gpu]
+
+  fastapi:
+    image: tsukisama9292:ai-sample-server:fastapi-dev
+    container_name: ai_server_sample_fastapi
+    <<: *default-opts
+    networks:
+      - server_network
+    entrypoint: 
+      - /bin/sh
+      - -c
+      - |
+        echo "Starting FastAPI server..."
+        chmod +x entrypoint.sh
+        ./entrypoint.sh
+
+  nextjs:
+    image: tsukisama9292:ai-sample-server:nextjs-dev
+    container_name: ai_server_sample_nextjs
+    <<: *default-opts
+    volumes:
+      - static_files:/static
+    networks:
+      - server_network
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        echo "Copy Next.js Static..."
+        rm -rf /static/*
+        cp -r /app/out/* /static
+        tail -f /dev/null
+
+  nginx:
+    image: tsukisama9292:ai-sample-server:nginx-dev
+    container_name: ai_server_sample_nginx
+    <<: *default-opts
+    ports:
+      - ${NGINX_PORT}:80
+    volumes:
+      - static_files:/static
+    depends_on:
+      - fastapi
+      - nextjs
+    networks:
+      - server_network
+
+networks:
+  server_network:
+    driver: bridge
+    
+volumes:
+  static_files: {}
