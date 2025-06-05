@@ -35,7 +35,7 @@
 
 ## 💻 系統需求
 
-- 🧠 **CPU**: 至少 2 核心（建議更多）  
+- 🧠 **CPU**: 2 核 ⬆️ （建議 4 核以上）  
 - 🧵 **RAM**: Linux 8 GB ⬆️ | Windows 16 GB ⬆️| MacOS 16 GB ⬆️  
 - 💾 **磁碟**: 至少空閒 50 GB（包含 VM, Docker Image, AI model）  
 - 🐧 **作業系統**: Windows / Linux / macOS（✅ 推薦使用 Linux）  
@@ -47,12 +47,13 @@
 
 ## ⚡ 快速開始
 
+### 單機部署
 ```bash
-git clone https://github.com/TsukiSama9292/AI-Server-Sample.git             # 下載專案(部屬分支)
-cd AI-Server-Sample/docker-compose                                          # 進入專案資料夾
-cp env.example .env                                                         # 複製範本環境變數
-docker compose -f docker-compose-all-cpu-user.yml up -d                     # CPU 模式下啟用所有服務(已編譯鏡像) 
-docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"  # 下載模型
+git clone https://github.com/TsukiSama9292/AI-Server-Sample.git # Clone 專案
+cd AI-Server-Sample           # 進入專案資料夾
+chmod +x single-setup.sh      # 賦予執行權限
+./single-setup.sh             # 執行腳本, CPU 部署
+# ./single-setup.sh --gpu     # 執行腳本, GPU 部署
 ```
 
 ## 🛠️ 技術棧  
