@@ -1,0 +1,9 @@
+[project]
+name = "AI-Sample-MCP"
+version = "0.0.1"
+requires-python = "==3.12.8"
+dependencies = [
+    "setuptools",
+    "ipykernel",
+    "mcp[cli]",
+]

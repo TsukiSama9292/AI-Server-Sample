@@ -1,8 +1,8 @@
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter
 from ai_sample.api.chat.schema import ChatRequest
-from fastapi.responses import StreamingResponse, JSONResponse
-from ai_sample.chain.chat import chatbot
+from fastapi.responses import StreamingResponse
+from ai_sample.agnet.chat import chatbot
 # 初始化路由
 router = APIRouter()
 

@@ -1,5 +1,5 @@
 x-default-opts: &default-opts
-  restart: always
+  restart: unless-stopped
   tty: true
   stdin_open: true
   privileged: false
@@ -59,9 +59,65 @@ services:
     networks:
       - server_network
 
+  searxng_valkey:
+    container_name: searxng_valkey
+    image: docker.io/valkey/valkey:8-alpine
+    command: valkey-server --save 30 1 --loglevel warning
+    <<: *default-opts
+    networks:
+      - server_network
+    volumes:
+      - valkey-data2:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  searxng:
+    container_name: searxng
+    build:
+      context: ../
+      dockerfile: dockerfile/dockerfile.searxng
+    <<: *default-opts
+    networks:
+      - server_network
+    volumes:
+      - searxng_cache:/var/cache/searxng
+      - searxng_data:/etc/searxng
+    environment:
+      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
+      - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+  
+  mcp:
+    container_name: ai_server_sample_mcp
+    build:
+      context: ../
+      dockerfile: dockerfile/dockerfile.mcp
+    <<: *default-opts
+    ports:
+      - "6274:6274"
+    volumes:
+      - ../mcp:/app
+    entrypoint: 
+      - /bin/sh
+      - -c
+      - |
+        echo "Starting MCP server..."
+        chmod +x entrypoint.sh
+        ./entrypoint.sh
+
 networks:
   server_network:
-    driver: bridge
-  
+
 volumes:
-  ollama: {}
+  ollama:
+  valkey-data2:
+  searxng_cache:
+  searxng_data:

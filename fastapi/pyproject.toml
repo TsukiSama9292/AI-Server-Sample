@@ -8,6 +8,7 @@ dependencies = [
     "langchain",
     "langchain_community",
     "langchain_ollama",
+    "langchain-mcp-adapters",
     "fastapi",
     "pydantic",
     "uvicorn",

@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     reload: bool = False
     log_level: str = "info"
     
+    # SearxNG settings
+    searxng_url: str = "http://searxng:8080"
+    
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
