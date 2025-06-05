@@ -5,7 +5,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # 複製 Next.js 應用程式的檔案到容器中
-COPY ./nextjs/ /app/
+COPY nextjs/ /app/
 
 # 安裝依賴並編譯 Next.js 應用
 RUN npm install && \

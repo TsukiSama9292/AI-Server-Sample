@@ -1,9 +1,9 @@
 name: 🐳 Push Docker Hub
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch: # 🖱️ 允許手動觸發工作流程
 
 jobs:

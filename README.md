@@ -3,13 +3,17 @@
 <div align="center">
 
 <a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
-  <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" width="150" />
+  <img src="https://img.shields.io/badge/CPU-Supported-blue?style=for-the-badge" alt="CPU Support" />
 </a>
-<a href="https://github.com/TsukiSama9292/AI-Server-Sample/tree/dev">
-  <img src="https://img.shields.io/badge/Version-Dev-blue?style=for-the-badge" alt="Latest Version" />
+<a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
+  <img src="https://img.shields.io/badge/GPU-Supported-green?style=for-the-badge" alt="GPU Support" />
 </a>
+
 <a href="https://github.com/TsukiSama9292/AI-Server-Sample/blob/main/LICENSE">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
+</a>
+<a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
+  <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" width="150" />
 </a>
 
 </div>
@@ -33,11 +37,13 @@
 
 😊 作者本人很喜歡emoji，即便我編輯 Markdown 也會丟 AI 生成適合的 emoji
 
+❤️ AI 模型運行組件 - Ollama 支援 CPU 與 Nvidia GPU
+
 ## 💻 系統需求
 
-- 🧠 **CPU**: 至少 4 核心（建議更多）  
-- 🧵 **RAM**: 建議 32 GB（穩定）  
-- 💾 **磁碟**: 至少空閒 200 GB（VM 檔案, Docker 映像檔與 AI 模型）  
+- 🧠 **CPU**: 至少 2 核心（建議更多）  
+- 🧵 **RAM**: Linux 8 GB ⬆️ | Windows 16 GB ⬆️| MacOS 16 GB ⬆️  
+- 💾 **磁碟**: 至少空閒 50 GB（包含 VM, Docker Image, AI model）  
 - 🐧 **作業系統**: Windows / Linux / macOS（✅ 推薦使用 Linux）  
 - 🌐 **網路**: 穩定的網際網路連線  
   - 🌍 若在中國境內，請搭配 **科學上網** 工具，以順利拉取：
@@ -50,7 +56,7 @@
 ```bash
 git clone https://github.com/TsukiSama9292/AI-Server-Sample.git             # 下載專案(部屬分支)
 cd AI-Server-Sample                                                         # 進入專案資料夾
-cp .env.example .env                                                        # 複製範本環境變數
+cp docker.env.example .env                                                  # 複製範本環境變數
 docker compose -f docker-compose-all-cpu-user.yml up -d                     # CPU 模式下啟用所有服務(已編譯鏡像) 
 docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"  # 下載模型
 ```
@@ -86,26 +92,16 @@ docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"  # �
 ## 📁 檔案結構
 ```bash
 AI-Server-Sample/
-├── docker-compose-all-cpu.yml     # 🐳 所有服務 + CPU 運行 Ollama
-├── docker-compose-all-cuda.yml    # 🐳 所有服務 + GPU 運行 Ollama
-├── docker-compose-ollama-cpu.yml  # 🐳 CPU 運行 Ollama
-├── docker-compose-ollama-cuda.yml # 🐳 Nvidia GPU 運行 Ollama
-├── 🐳 docker-compose-server.yml   # 🌐 伺服器用的 docker-compose 檔案
-├── 🐳 docker-compose.yml          # 👨‍💻 開發用的 docker-compose 檔案
-├── 🐍 dockerfile.fastapi          # ⚙️ FastAPI 的 Dockerfile
-├── 💻 dockerfile.nextjs           # 🖼️ Next.js 的 Dockerfile
-├── 🌐 dockerfile.nginx            # 🔁 Nginx 的 Dockerfile
-├── docs                           # 📚 組件說明文件目錄
-├── 🧾 .env.example                # 📌 環境變數範本檔案 (Docker Compose 可用)
-├── 🐍 fastapi                     # 🧠 FastAPI 應用程式的目錄
-├── 🔧 .github                     # 🤖 GitHub Actions 的目錄
-│   └── 🔁 workflows               # ⚙️ 工作流程的目錄
-│       ├── 🚀 cd.yml              # 🚚 CD 的工作流程
-│       └── 🧪 ci.yml              # 🧪 CI 的工作流程
+├── 🔧 .github                     # 🔧 GitHub Actions 的目錄
+├── 🐙 docker-compose              # 🐙 docker-compose 目錄 (多種部屬方式)
+├── 🐳 dockerfile                  # 🐳 Dockerfile 目錄 (多個組件容器建立檔)
+├── 📃 docs                        # 📃 組件說明文件目錄
+├── 🐍 fastapi                     # 🐍 FastAPI 應用程式的目錄
 ├── 🖼️ img                         # 🖼️ 圖片目錄
-├── 📄 LICENSE                     # 📜 專案許可證文件
-├── 💻 nextjs                      # 🖥️ Next.js 應用程式的目錄
+├── 💻 nextjs                      # 💻 Next.js 應用程式的目錄
 ├── 🌐 nginx                       # 🌐 Nginx 的目錄
+├── ❌ .gitignore                  # ❌ Git 忽略檔案
+├── 📄 LICENSE                     # 📄 專案許可證文件
 └── 📘 README.md                   # 📝 專案說明文件
 ```
 
