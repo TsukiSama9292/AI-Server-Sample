@@ -55,8 +55,8 @@
 
 ```bash
 git clone https://github.com/TsukiSama9292/AI-Server-Sample.git             # 下載專案(部屬分支)
-cd AI-Server-Sample                                                         # 進入專案資料夾
-cp docker.env.example .env                                                  # 複製範本環境變數
+cd AI-Server-Sample/docker-compose                                          # 進入專案資料夾
+cp env.example .env                                                         # 複製範本環境變數
 docker compose -f docker-compose-all-cpu-user.yml up -d                     # CPU 模式下啟用所有服務(已編譯鏡像) 
 docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"  # 下載模型
 ```
@@ -72,8 +72,6 @@ docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"  # �
 | **AI Server** | 🤖 Ollama                     | 支援 CPU，提供 AI 模型服務 🧩                                        |
 | **DB**        | 🐘 PostgreSQL + 🧪 PGLite     | 預計使用，資料存儲用途 💾                                             |
 
-
-
 ## 🏗️ 架構圖 - [線上架構圖](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=ai-sample-server.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1QD_Iwv_ZQpG5kS-wWtm0l2T6u9CXrsgk%26export%3Ddownload)
 
 ![架構圖](./img/ai-sample-server.drawio.png)
@@ -85,7 +83,6 @@ docker exec ai_server_sample_ollama bash -c "ollama pull gemma3:1b-it-qat"  # �
 [🔁 CI/CD 介紹、操作說明 👨‍💻](./docs/CICD.md)  
 
 [🐳 Docker 介紹、安裝、中心 📦](./docs/Docker.md)  
-
 
 ---
 
