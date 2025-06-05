@@ -18,7 +18,7 @@ jobs:
       - name: 🌱 Set Environment Variables
         run: |
           echo "Setting environment variables..."
-          cp ai-server-docker-compose/.env.example docker-compose/.env
+          cp ai-server-docker-compose/.env.example ai-server-docker-compose/.env
           echo -e "\nOLLAMA_API_URL=http://${{ secrets.OLLAMA_SERVICE_IP_PORT }}" >> ./fastapi/.env
       
       # 🏗️ 建置應用程式鏡像
