@@ -27,7 +27,7 @@ jobs:
       
       - name: Build the FastAPI image
         run: |
-          docker build --pull --no-cache -f dockerfile.fastapi -t ${{ secrets.DOCKER_USERNAME }}/ai-sample-server:fastapi-dev .
+          docker build --pull --no-cache -f dockerfile/dockerfile.fastapi -t ${{ secrets.DOCKER_USERNAME }}/ai-sample-server:fastapi-dev .
           
       - name: Push the FastAPI image to Docker Hub
         run: |
@@ -36,7 +36,7 @@ jobs:
       
       - name: Build Next.js image
         run: |
-          docker build --pull --no-cache -f dockerfile.nextjs -t ${{ secrets.DOCKER_USERNAME }}/ai-sample-server:nextjs-dev .
+          docker build --pull --no-cache -f dockerfile/dockerfile.nextjs -t ${{ secrets.DOCKER_USERNAME }}/ai-sample-server:nextjs-dev .
       
       - name: Push the Next.js image to Docker Hub
         run: |
@@ -45,7 +45,7 @@ jobs:
       
       - name: Build Nginx image
         run: |
-          docker build --pull --no-cache -f dockerfile.nginx -t ${{ secrets.DOCKER_USERNAME }}/ai-sample-server:nginx-dev .
+          docker build --pull --no-cache -f dockerfile/dockerfile.nginx -t ${{ secrets.DOCKER_USERNAME }}/ai-sample-server:nginx-dev .
           
       - name: Push the Docker image to Docker Hub
         run: |
