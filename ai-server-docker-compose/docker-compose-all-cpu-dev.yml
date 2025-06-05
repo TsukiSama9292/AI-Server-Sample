@@ -102,7 +102,9 @@ services:
       dockerfile: dockerfile/dockerfile.mcp
     <<: *default-opts
     ports:
-      - "6274:6274"
+      - "61080:8000"
+    networks:
+      - server_network
     volumes:
       - ../mcp:/app
     entrypoint: 

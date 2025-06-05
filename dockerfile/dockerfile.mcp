@@ -15,22 +15,6 @@ RUN apt-get update && \
     python3-dev \
     docker.io
 
-# 安裝 NVM 和 Node.js
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
-RUN echo "source \$HOME/.nvm/nvm.sh" >> ~/.bashrc
-
-# 目前 LTS 為 22
-RUN export NVM_DIR="/root/.nvm" && \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    nvm install node && \
-    nvm install 22 && \
-    nvm alias default 22
-
-# 設定環境變數以便 Node.js 和 npm 可用
-ENV NVM_DIR=/root/.nvm
-ENV NODE_VERSION=default
-ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
-
 # 安裝 uv 最新版
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
