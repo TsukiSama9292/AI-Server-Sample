@@ -2,25 +2,28 @@
 
 <div align="center">
 
-<a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
-  <img src="https://img.shields.io/badge/CPU-Supported-blue?style=for-the-badge" alt="CPU Support" />
+<a href="https://github.com/TsukiSama9292/AI-Server-Sample">
+  <img src="https://github.com/TsukiSama9292/AI-Server-Sample/workflows/🛠️ CI Pipeline/badge.svg" alt="CI status"/>
 </a>
-<a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
-  <img src="https://img.shields.io/badge/GPU-Supported-green?style=for-the-badge" alt="GPU Support" />
+<a href="https://github.com/TsukiSama9292/AI-Server-Sample">
+  <img src="https://img.shields.io/badge/CPU-Supported-blue" alt="CPU Support" />
+</a>
+<a href="https://github.com/TsukiSama9292/AI-Server-Sample">
+  <img src="https://img.shields.io/badge/GPU-Supported-green" alt="GPU Support" />
 </a>
 
 <a href="https://github.com/TsukiSama9292/AI-Server-Sample/blob/main/LICENSE">
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" />
 </a>
 <a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
-  <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" width="150" />
+  <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" />
 </a>
 
 </div>
 
 ## 🧩 用途
 
-📚 這是一個結合「全端架構 + AI Agent + 自動部署」的教學範本。  
+📚 這是一個結合「全端架構 + AI Agent + CI/CD」的教學範本。  
 
 ✅ 適合想學習如何從 0 到 1 建立 AI 網頁伺服器的開發者。  
 
