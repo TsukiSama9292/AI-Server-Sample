@@ -7,8 +7,8 @@ x-default-opts: &default-opts
 services:
   fastapi:
     build:
-      context: .
-      dockerfile: dockerfile.fastapi
+      context: ../
+      dockerfile: dockerfile/dockerfile.fastapi
     container_name: ai_server_sample_fastapi
     <<: *default-opts
     networks:
@@ -23,8 +23,8 @@ services:
 
   nextjs:
     build:
-      context: .
-      dockerfile: dockerfile.nextjs
+      context: ../
+      dockerfile: dockerfile/dockerfile.nextjs
     container_name: ai_server_sample_nextjs
     <<: *default-opts
     volumes:
@@ -42,8 +42,8 @@ services:
 
   nginx:
     build: 
-      context: .
-      dockerfile: dockerfile.nginx
+      context: ../
+      dockerfile: dockerfile/dockerfile.nginx
     container_name: ai_server_sample_nginx
     <<: *default-opts
     ports:
