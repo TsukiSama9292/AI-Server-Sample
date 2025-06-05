@@ -9,15 +9,22 @@ services:
     image: ollama/ollama:latest
     container_name: ai_server_sample_ollama
     <<: *default-opts
-    ports:
-      - "11434:11434"
     volumes:
       - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
     networks:
       - server_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: "all"
+            capabilities: [gpu]
 
   fastapi:
-    image: tsukisama9292:ai-sample-server:fastapi-dev
+    image: tsukisama9292/ai-sample-server:fastapi-dev
     container_name: ai_server_sample_fastapi
     <<: *default-opts
     networks:
@@ -31,7 +38,7 @@ services:
         ./entrypoint.sh
 
   nextjs:
-    image: tsukisama9292:ai-sample-server:nextjs-dev
+    image: tsukisama9292/ai-sample-server:nextjs-dev
     container_name: ai_server_sample_nextjs
     <<: *default-opts
     volumes:
@@ -48,7 +55,7 @@ services:
         tail -f /dev/null
 
   nginx:
-    image: tsukisama9292:ai-sample-server:nginx-dev
+    image: tsukisama9292/ai-sample-server:nginx-dev
     container_name: ai_server_sample_nginx
     <<: *default-opts
     ports:
@@ -67,4 +74,3 @@ networks:
     
 volumes:
   static_files: {}
-  ollama: {}
