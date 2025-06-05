@@ -12,6 +12,10 @@
   </p>
 </div>
 
+
+![Docker Automated](https://img.shields.io/docker/automated/tsukisama9292/ai-server-sample)
+
+
 ## 🧩 用途
 
 📚 這是一個結合「全端架構 + AI Agent + CI/CD」的教學範本。  
@@ -67,9 +71,9 @@ chmod +x single-setup.sh      # 賦予執行權限
 | **AI Server** | 🤖 Ollama                     | 支援 CPU，提供 AI 模型服務 🧩                                        |
 | **DB**        | 🐘 PostgreSQL + 🧪 PGLite     | 預計使用，資料存儲用途 💾                                             |
 
-## 🏗️ 架構圖 - [線上架構圖](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=ai-sample-server.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1QD_Iwv_ZQpG5kS-wWtm0l2T6u9CXrsgk%26export%3Ddownload)
+## 🏗️ 架構圖 - [線上架構圖](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=ai-server-sample.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1QD_Iwv_ZQpG5kS-wWtm0l2T6u9CXrsgk%26export%3Ddownload)
 
-![架構圖](./img/ai-sample-server.drawio.png)
+![架構圖](./img/ai-server-sample.drawio.png)
 
 ## 📚 推薦閱讀文獻 - 新手友善
 

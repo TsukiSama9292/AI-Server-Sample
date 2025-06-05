@@ -17,7 +17,7 @@ services:
       - server_network
 
   fastapi:
-    image: tsukisama9292/ai-sample-server:fastapi-dev
+    image: tsukisama9292/ai-server-sample:fastapi-dev
     container_name: ai_server_sample_fastapi
     <<: *default-opts
     networks:
@@ -31,7 +31,7 @@ services:
         ./entrypoint.sh
 
   nextjs:
-    image: tsukisama9292/ai-sample-server:nextjs-dev
+    image: tsukisama9292/ai-server-sample:nextjs-dev
     container_name: ai_server_sample_nextjs
     <<: *default-opts
     volumes:
@@ -48,7 +48,7 @@ services:
         tail -f /dev/null
 
   nginx:
-    image: tsukisama9292/ai-sample-server:nginx-dev
+    image: tsukisama9292/ai-server-sample:nginx-dev
     container_name: ai_server_sample_nginx
     <<: *default-opts
     ports:
