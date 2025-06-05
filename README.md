@@ -2,22 +2,13 @@
 
 <div align="center">
   <p>
-    <a href="https://github.com/TsukiSama9292/AI-Server-Sample">
-      <img src="https://github.com/TsukiSama9292/AI-Server-Sample/workflows/🛠️ CI Pipeline/badge.svg" alt="CI status"/>
-    </a>
-    <a href="https://github.com/TsukiSama9292/AI-Server-Sample">
-      <img src="https://img.shields.io/badge/CPU-Supported-blue" alt="CPU Support" />
-    </a>
-    <a href="https://github.com/TsukiSama9292/AI-Server-Sample">
-      <img src="https://img.shields.io/badge/GPU-Supported-green" alt="GPU Support" />
-    </a>
-
-    <a href="https://github.com/TsukiSama9292/AI-Server-Sample/blob/main/LICENSE">
-      <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" />
-    </a>
-    <a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample">
-      <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" />
-    </a>
+    <a href="https://github.com/TsukiSama9292/AI-Server-Sample"><img src="https://github.com/TsukiSama9292/AI-Server-Sample/workflows/🛠️ CI Pipeline/badge.svg" alt="CI status"/></a>
+    <a href="https://github.com/TsukiSama9292/AI-Server-Sample"><img src="https://img.shields.io/badge/CPU-Supported-blue" alt="CPU Support" /></a>
+    <a href="https://github.com/TsukiSama9292/AI-Server-Sample"><img src="https://img.shields.io/badge/GPU-Supported-green" alt="GPU Support" /></a>
+  </p>
+  <p>  
+    <a href="https://github.com/TsukiSama9292/AI-Server-Sample/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" /></a>
+    <a href="https://deepwiki.com/TsukiSama9292/AI-Server-Sample"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" /></a>
   </p>
 </div>
 
