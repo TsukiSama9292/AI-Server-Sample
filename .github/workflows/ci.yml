@@ -32,6 +32,7 @@ jobs:
       - name: 🚀 Start Application
         run: |
           echo "Starting Docker Containers..."
+          cd docker-compose
           docker-compose -f docker-compose-server.yml up -d
           sleep 5
       
@@ -46,6 +47,8 @@ jobs:
       - name: 🛑 Clear Application
         if: always()
         run: |
+          echo "Remove Docker Containers..."
+          cd docker-compose
           docker-compose -f docker-compose-server.yml down
       
       # 🧹 清理 Docker 資源
